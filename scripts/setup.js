@@ -13,9 +13,39 @@ function startGame(){
 }
 
 function createBoard(boardSize){
-    $.get('setup.php?board-size=' + boardSize, function(response){
-            Board.fromSetupResponse(boardSize, response.result);
-        });
+    Board.fromSetupResponse(boardSize, getRandomCells(boardSize));
+}
+
+function getRandomCells(boardSize){
+    let randomCells = [];
+    if(boardSize < 4){
+        var max = boardSize * boardSize;
+    }else{
+        var max = 10;
+    }
+
+    for(let i = 0; i < max; i++){
+        let randomCell = [
+            Math.floor(Math.random() * boardSize),
+            Math.floor(Math.random() * boardSize)
+        ];
+
+        for(let j = 0; j < randomCells.length; j++){
+            if(randomCell[0] == randomCells[j][0] && randomCell[1] == randomCells[j][1]){
+                i--;
+                var breakFlag = true;
+                break;
+            }
+        }
+        if(breakFlag){
+            breakFlag = false;
+            continue;
+        }
+
+        randomCells.push(randomCell);
+    }
+    console.log(randomCells);
+    return randomCells;
 }
 
 $('#board-size-input').on('input', function(){
