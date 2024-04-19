@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <meta name="author" content="Logan Mills">
+    <meta name="description" content="A site implementing a game of lights out">
+    <meta name="keywords" content="lights out game games">
+
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Lights out</title>
+    <link rel="stylesheet/less" type="text/css" href="styles/index.less">
+    <script src="https://cdn.jsdelivr.net/npm/less"></script>
+</head>
+<body>
+    <header class="container text-center">
+        <h1 class="title display-1">Lights <span class="dark">Out</span></h1>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#instructions">
+            How to Play
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="instructions" tabindex="-1" aria-labelledby="instructionsLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="instructionsLabel">How to Play Lights Out</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h1>Start Game</h1>
+                    <p>You can start a game by entering the size of the game board, this will create a square board, for example if you enter "5", the following board will be generated</p>
+                    <img src="imgs/5-board.png" style="max-width: 60%">
+                    <h1>How to Play</h1>
+                    <p>After creating the board, there will be 10 lights that are "on" these lights will be displayed in yellow. Your goal is to turn off all of these lights.</p>
+                    <p>You can toggle the lights on and off by clicking on them, however this will also toggle adjacent lights, see below:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="imgs/before-toggle.png">
+                        </div>
+                        <div class="col-md-6">
+                            <img src="imgs/after-toggle.png">
+                        </div>
+                    </div>
+                    <h1>Winning</h1>
+                    <p>Once all of the lights are off you win! A winning board looks like this:</p>
+                    <img src="imgs/winning-board.png" style="max-width: 60%">
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+    </header>
+    <main class="container-md text-center center-justified">
+        <div class="alert alert-danger" role="alert" id="error-message">
+            Please enter a valid board size (A number between 1 and 10 inclusive)
+        </div>
+        <form>
+            <div class="row mt-3">
+                <div class="form-group col-sm-3">
+                    <label for="board-size-input">Board Size</label>
+                    <input id="board-size-input" type="number" class="form-control" min="1" max="10">
+                    <button id="start-game-button" type="button" class="btn btn-success my-2">Start Game</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="alert alert-success" role="alert" id="win-message">
+            You Win!
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <table id="game-board" class="table table-secondary table-borderless">
+                    <tbody id="game-body">
+        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="scripts/Light.js"></script>
+    <script src="scripts/Board.js"></script>
+    <script src="scripts/setup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
